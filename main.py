@@ -1,5 +1,6 @@
 from telethon import TelegramClient, events, sync,Button
 from telethon.events import NewMessage
+import requests
 
 bot_token = '5477880325:AAG4D9yuEljDKFmUb12aF2y6i2k-_rCDS3Q'
 chat_id = '5068280913'
