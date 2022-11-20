@@ -326,28 +326,51 @@ async def onmessage(bot:TelegramClient,ev: NewMessage.Event,loop,ret=False):
                       STORE_RESULT.pop(ffname)
                   except:pass
                   index+=1
-            if txtname!='':
+           if txtname!='':
                 txtsendname = txtname
             txtfile = open(txtsendname,'w')
             urls = []
             for item in resultlist:
                 urls.append(item.url)
-            await bot.edit_message(ev.chat,message,text=f'🖇𝕲𝖊𝖓𝖊𝖗𝖆𝖓𝖉𝖔 𝖃𝕯𝕷𝖎𝖓𝖐𝖘📝...')
-            data = xdlink.parse(urls)
-            if data:
-                txtfile.write(data)
-            else:
-                txtfile.write('🅴🆁🆁🅾🆁 🆇🅳🅻🅸🅽🅺 🅿🅰🆁🆂🅴 🆄🆁🅻🆂')
+            await bot.edit_message(ev.chat,message,text=f'⚒ ℂ𝕠𝕟𝕤𝕥𝕣𝕦𝕪𝕖𝕟𝕕𝕠 𝕖𝕟𝕝𝕒𝕔𝕖𝕤 ⚒')
+            txu = ''
+            for ur in urls:
+                txu+= str(ur) + '\n'
+            txtfile.write(txu)
             txtfile.close()
+            #data = xdlink.parse(urls)
+            #if data:
+            #    txtfile.write(data)
+            #else:
+            #   txtfile.write('Error al Escribir')
+            #txtfile.close()
+            tm = 0
+            for x in filesize:
+                tm+= x
+            print('tamao: ',tm)
+            spac = tm / 1000
+            t = str(spac)
+            inl = t[:1]
+            fnl = t[1:3]
+            space = str(inl) + '.' + str(fnl)
+            tspace = config.space
+            tspace[username] = tspace[username] + spac
+            filesize = []
+            txtinfo = '====>>> #𝔽𝕚𝕟𝕒𝕝𝕚𝕫𝕒𝕕𝕠 <<<<====\n#ℕ𝕒𝕞𝕖: ' + txtsendname + '\n\n>>>> ' + str(space) + 'mb 𝕖𝕟 #ℙ𝕒𝕣𝕥𝕖𝕤 𝕕𝕖 99  𝕞𝕓\n====>>> #𝔽𝕚𝕟𝕒𝕝𝕚𝕫𝕒𝕕𝕠 <<<<===='
+            username = ev.message.chat.username
+            premium = os.path.basename('especial.tgs')
             await bot.delete_messages(ev.chat,message)
             await bot.send_file(ev.chat,txtsendname,
-                                caption=f'{txtsendname}',
+                                caption=f'{txtinfo}',
                                 thumb='thumb.png',
-                                buttons=[Button.url('🖥Rey Michel','https://t.me/reymichel2009')])
+                                buttons=[Button.url('|ıllıll Rey Michel |ıllıllı','https://t.me/reymichel2009')])
+            await bot.send_file(ev.chat,premium)
             for fitem in listdir:
-                try:
-                    os.unlink(fitem)
-                except:pass
+               try:
+                   os.unlink(fitem)
+               except Exception as ex:
+                   print(str(ex))
+                   pass
             os.unlink(txtsendname)
         except Exception as ex:
              await bot.send_message(ev.chat.id,str(ex))
