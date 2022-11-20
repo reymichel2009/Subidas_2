@@ -1,6 +1,6 @@
 {
   "name": "OwnCloudUploader",
-  "description": "Bot De Telegram : Descargador gratis de contenido desde internet a owncloud , nexcloud en cuba",
+  "description": "Bot De Telegram : Descargador gratis de contenido desde internet a oncloud , nexcloud en cuba",
   "repository": "https://github.com/ObisoftDev/ownclouduci",
   "env": {
     "bot_token": {
